@@ -16,3 +16,7 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+
+// https://www.youtube.com/watch?v=-ad4qLKep3U&t=2959s
+// Time: 1:08:40
