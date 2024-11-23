@@ -9,13 +9,6 @@ import MapKit
 import SwiftUI
 
 struct ListingDetailView: View {
-    var images = [
-        "listing_1",
-        "listing_2",
-        "listing_3",
-        "listing_4",
-    ]
-    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -182,6 +175,7 @@ struct ListingDetailView: View {
             }
             .padding()
         }
+        .toolbarVisibility(.hidden, for: .tabBar)
         .ignoresSafeArea()
         .padding(.bottom, 64)
         .overlay(alignment: .bottom) {
