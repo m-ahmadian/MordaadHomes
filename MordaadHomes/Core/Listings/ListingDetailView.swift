@@ -221,6 +221,7 @@ struct ListingDetailView: View {
             }
             .background(.white)
         }
+        .navigationBarHidden(true)
     }
 }
 
