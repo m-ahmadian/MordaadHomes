@@ -17,18 +17,35 @@ struct DestinationSearchView: View {
     @Binding var show: Bool
     @State private var destination = ""
     @State private var selectedOption: DestinationSearchOptions = .location
+    @State private var starDate = Date()
+    @State private var endDate = Date()
+    @State private var numberOfGuests = 0
     
     var body: some View {
         VStack {
-            Button {
-                withAnimation(.snappy) {
-                    show.toggle()
+            HStack {
+                Button {
+                    withAnimation(.snappy) {
+                        show.toggle()
+                    }
+                } label: {
+                    Image(systemName: "xmark.circle")
+                        .imageScale(.large)
+                        .foregroundStyle(.black)
                 }
-            } label: {
-                Image(systemName: "xmark.circle")
-                    .imageScale(.large)
+                
+                Spacer()
+                
+                if !destination.isEmpty {
+                    Button("Clear") {
+                        destination = ""
+                    }
                     .foregroundStyle(.black)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                }
             }
+            .padding()
 
             VStack(alignment: .leading) {
                 if selectedOption == .location {
@@ -54,48 +71,69 @@ struct DestinationSearchView: View {
                     collapsedPickerView(title: "Where", description: "Add destination")
                 }
             }
-            .padding()
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: 10)
+            .collapsibleView()
+            .frame(height: selectedOption == .location ? 120 : 64)
             .onTapGesture {
-                selectedOption = .location
+                withAnimation(.snappy) { selectedOption = .location }
             }
             
-            // date selection view
-            VStack {
+            // MARK: - Date Selection View
+            
+            VStack(alignment: .leading) {
                 if selectedOption == .dates {
-                    Text("Show expanded view")
+                    Text("When's your trip?")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    VStack {
+                        DatePicker("From", selection: $starDate, displayedComponents: .date)
+                        
+                        Divider()
+                        
+                        DatePicker("To", selection: $endDate, displayedComponents: .date)
+                    }
+                    .foregroundStyle(.gray)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    
                 } else {
                     collapsedPickerView(title: "When", description: "Add dates")
                 }
             }
-            .padding()
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: 10)
+            .collapsibleView()
+            .frame(height: selectedOption == .dates ? 180 : 64)
             .onTapGesture {
-                selectedOption = .dates
+                withAnimation(.snappy) { selectedOption = .dates }
             }
             
-            // num guests view
-            VStack {
+            // MARK: - Number of guests view
+            
+            VStack(alignment: .leading) {
                 if selectedOption == .guests {
-                    Text("Show expanded view")
+                    Text("Who's coming?")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    Stepper {
+                        Text("\(numberOfGuests) Adults")
+                    } onIncrement: {
+                        numberOfGuests += 1
+                    } onDecrement: {
+                        guard numberOfGuests > 0 else { return }
+                        numberOfGuests -= 1
+                    }
+
                 } else {
                     collapsedPickerView(title: "Who", description: "Add guests")
                 }
             }
-            .padding()
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: 10)
+            .collapsibleView()
+            .frame(height: selectedOption == .guests ? 120 : 64)
             .onTapGesture {
-                selectedOption = .guests
+                withAnimation(.snappy) { selectedOption = .guests }
             }
+            
+            Spacer()
         }
     }
 }

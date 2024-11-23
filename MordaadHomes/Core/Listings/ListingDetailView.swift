@@ -34,6 +34,8 @@ struct ListingDetailView: View {
                                 .fill(.white)
                                 .frame(width: 32, height: 32)
                         }
+                        // TODO: Check this top padding on a device
+                        .padding(.top, 16)
                         .padding(32)
                 }
             }
