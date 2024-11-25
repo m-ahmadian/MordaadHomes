@@ -8,6 +8,8 @@
 import Foundation
 
 class DeveloperPreview {
+    static let shared = DeveloperPreview()
+    
     var listings: [Listing] = [
         .init(
             id: NSUUID().uuidString,
@@ -21,13 +23,13 @@ class DeveloperPreview {
             pricePerNight: 567,
             latitude: 25.7850,
             longitude: -80.1936,
-            imageURLs: ["listing-2", "listing-1", "listing-3", "listing-4"],
+            imageURLs: ["listing_2", "listing_1", "listing_3", "listing_4"],
             address: "124 Main St",
             city: "Miami",
             state: "Florida",
             title: "Miami Villa",
             rating: 4.86,
-            feature: [.selfCheckIn, .superHost],
+            features: [.selfCheckIn, .superHost],
             amenities: [.wifi, .alarmSystem, .balcony, .laundry, .tv],
             type: .villa
         ),
@@ -43,13 +45,13 @@ class DeveloperPreview {
             pricePerNight: 567,
             latitude: 25.7706,
             longitude: -80.1340,
-            imageURLs: ["listing-3", "listing-2", "listing-1", "listing-4"],
+            imageURLs: ["listing_3", "listing_2", "listing_1", "listing_4"],
             address: "124 Main St",
             city: "Miami",
             state: "Florida",
             title: "Miami Beach House",
             rating: 4.86,
-            feature: [.selfCheckIn, .superHost],
+            features: [.selfCheckIn, .superHost],
             amenities: [.wifi, .alarmSystem, .balcony],
             type: .apartment
         ),
@@ -65,13 +67,13 @@ class DeveloperPreview {
             pricePerNight: 763,
             latitude: 25.7650,
             longitude: -80.1936,
-            imageURLs: ["listing-4", "listing-2", "listing-3", "listing-1"],
+            imageURLs: ["listing_4", "listing_2", "listing_3", "listing_1"],
             address: "124 Main St",
             city: "Miami",
             state: "Florida",
             title: "Beautiful Miami apartment in downtown Brickell",
             rating: 4.32,
-            feature: [.selfCheckIn, .superHost],
+            features: [.selfCheckIn, .superHost],
             amenities: [.wifi, .alarmSystem, .balcony],
             type: .apartment
         ),
@@ -87,13 +89,13 @@ class DeveloperPreview {
             pricePerNight: 763,
             latitude: 34.2,
             longitude: -118.0426,
-            imageURLs: ["listing-7", "listing-8", "listing-5", "listing-1"],
+            imageURLs: ["listing_7", "listing_8", "listing_5", "listing_1"],
             address: "124 Main St",
             city: "Los Angeles",
             state: "California",
             title: "Beautiful Los Angeles home in Malibu",
             rating: 4.97,
-            feature: [.selfCheckIn, .superHost],
+            features: [.selfCheckIn, .superHost],
             amenities: [.wifi, .alarmSystem, .pool],
             type: .apartment
         ),
@@ -109,13 +111,13 @@ class DeveloperPreview {
             pricePerNight: 763,
             latitude: 34.1,
             longitude: -118.1426,
-            imageURLs: ["listing-3", "listing-8", "listing-5", "listing-1"],
+            imageURLs: ["listing_3", "listing_8", "listing_5", "listing_1"],
             address: "124 Main St",
             city: "Los Angeles",
             state: "California",
             title: "Beautiful Los Angeles home in the Hollywood Hills",
             rating: 4.86,
-            feature: [.selfCheckIn, .superHost],
+            features: [.selfCheckIn, .superHost],
             amenities: [.wifi, .alarmSystem, .balcony],
             type: .apartment
         )
