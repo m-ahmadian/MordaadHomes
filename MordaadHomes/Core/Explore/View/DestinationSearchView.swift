@@ -15,7 +15,7 @@ enum DestinationSearchOptions {
 
 struct DestinationSearchView: View {
     @Binding var show: Bool
-    @State private var destination = ""
+    @ObservedObject  var viewModel: ExploreViewModel
     @State private var selectedOption: DestinationSearchOptions = .location
     @State private var starDate = Date()
     @State private var endDate = Date()
@@ -26,6 +26,7 @@ struct DestinationSearchView: View {
             HStack {
                 Button {
                     withAnimation(.snappy) {
+                        viewModel.updateListingsForLocation()
                         show.toggle()
                     }
                 } label: {
@@ -36,9 +37,10 @@ struct DestinationSearchView: View {
                 
                 Spacer()
                 
-                if !destination.isEmpty {
+                if !viewModel.searchLocation.isEmpty {
                     Button("Clear") {
-                        destination = ""
+                        viewModel.searchLocation = ""
+                        viewModel.updateListingsForLocation()
                     }
                     .foregroundStyle(.black)
                     .font(.subheadline)
@@ -57,8 +59,12 @@ struct DestinationSearchView: View {
                         Image(systemName: "magnifyingglass")
                             .imageScale(.small)
                         
-                        TextField("Search destinations", text: $destination)
+                        TextField("Search destinations", text: $viewModel.searchLocation)
                             .font(.subheadline)
+                            .onSubmit {
+                                viewModel.updateListingsForLocation()
+                                show.toggle()
+                            }
                     }
                     .frame(height: 44)
                     .padding(.horizontal)
@@ -139,7 +145,7 @@ struct DestinationSearchView: View {
 }
 
 #Preview {
-    DestinationSearchView(show: .constant(false))
+    DestinationSearchView(show: .constant(false), viewModel: ExploreViewModel(service: ExploreService()))
 }
 
 struct collapsedPickerView: View {
