@@ -19,6 +19,12 @@ struct MainTabView: View {
             ProfileView()
                 .tabItem { Label("Profile", systemImage: "person") }
         }
+        .onAppear {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            UITabBar.appearance().standardAppearance = appearance
+        }
+        .tint(.pink)
     }
 }
 

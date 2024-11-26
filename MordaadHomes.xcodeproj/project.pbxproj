@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E8BADCEB2CF58C2A00657722 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = E8BADCEA2CF58C2A00657722 /* SwiftFormat */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		E84121312CEEE43000FC2B24 /* MordaadHomes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MordaadHomes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8BADCEB2CF58C2A00657722 /* SwiftFormat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = MordaadHomes;
 			packageProductDependencies = (
+				E8BADCEA2CF58C2A00657722 /* SwiftFormat */,
 			);
 			productName = MordaadHomes;
 			productReference = E84121312CEEE43000FC2B24 /* MordaadHomes.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = E84121282CEEE43000FC2B24;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E8BADCE92CF58C2A00657722 /* XCRemoteSwiftPackageReference "swift-format" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E84121322CEEE43000FC2B24 /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8BADCE92CF58C2A00657722 /* XCRemoteSwiftPackageReference "swift-format" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftlang/swift-format";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 600.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E8BADCEA2CF58C2A00657722 /* SwiftFormat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8BADCE92CF58C2A00657722 /* XCRemoteSwiftPackageReference "swift-format" */;
+			productName = SwiftFormat;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E84121292CEEE43000FC2B24 /* Project object */;
 }

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "64b56a3c-7d4f-48e9-b581-ee6e2ccfd2e0-billionaire-bling-pool.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

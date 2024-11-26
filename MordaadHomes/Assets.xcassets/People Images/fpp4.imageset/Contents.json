@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "beautiful-asian-woman-in-casual-with-smile-cheerful-studio-shot-asian-woman-standing-hand-gesture-concept-by-ai-generated-free-photo.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
