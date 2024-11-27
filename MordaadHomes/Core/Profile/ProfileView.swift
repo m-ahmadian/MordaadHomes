@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
+    private let service: AuthService
+    @EnvironmentObject var contentViewModel: ContentViewModel
+    
+    init(service: AuthService, user: User?) {
+        self.service = service
+    }
+    
     var body: some View {
         VStack {
             // MARK: - Profile Login View
@@ -49,5 +56,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(service: AuthService(), user: DeveloperPreview.shared.user)
 }

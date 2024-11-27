@@ -338,4 +338,6 @@ class DeveloperPreview {
             type: .house
         )
     ]
+    
+    let user = User(accountType: .guest, fullName: "John Doe", email: "johndoe@gmail.com", profileImageURL: "male-profile-photo")
 }

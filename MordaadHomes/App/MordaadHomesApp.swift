@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MordaadHomesApp: App {
+    let authService = AuthService()
+    let userService = UserService()
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            ContentView(authService: authService, userService: userService)
         }
     }
 }
