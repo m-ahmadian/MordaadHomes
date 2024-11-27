@@ -18,10 +18,18 @@ extension View {
     }
     
     func cardStyle(in color: Color = .foregroundAccent) -> some View {
-        return modifier(Card(bgColor: color))
+        modifier(Card(bgColor: color))
     }
 
     func dropShadow() -> some View {
-        return modifier(DropShadow())
+        modifier(DropShadow())
+    }
+    
+    func standardTextFieldModifier() -> some View {
+        modifier(StandardTextFieldModifier())
+    }
+    
+    func standardButtonModifier() -> some View {
+        modifier(StandardButtonModifier())
     }
 }
