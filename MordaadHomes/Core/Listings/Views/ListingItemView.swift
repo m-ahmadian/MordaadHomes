@@ -46,11 +46,14 @@ struct ListingItemView: View {
                 
                 HStack(spacing: 2) {
                     Image(systemName: "star.fill")
+                        .resizable()
+                        .frame(width: 12, height: 12)
                     
                     Text(listing.rating.formatRating())
+                        .font(.footnote)
                 }
-                .foregroundStyle(.black)
             }
+            .foregroundStyle(.black)
             .font(.footnote)
         }
         .padding()

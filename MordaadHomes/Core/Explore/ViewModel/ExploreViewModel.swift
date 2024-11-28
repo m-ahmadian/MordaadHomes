@@ -5,10 +5,12 @@
 //  Created by Mehrdad Behrouz Ahmadian on 2024-11-24.
 //
 
+import CoreLocation
 import Foundation
 
 class ExploreViewModel: ObservableObject {
     @Published var listings = [Listing]()
+    @Published var coordinateRegion: CLLocationCoordinate2D = .losAngeles
     @Published var searchLocation = ""
     private let service: ExploreService
     private var listingsCopy = [Listing]()
@@ -21,6 +23,7 @@ class ExploreViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchListings() async {
         do {
             self.listings = try await service.fetchListings()
@@ -32,11 +35,24 @@ class ExploreViewModel: ObservableObject {
     }
     
     func updateListingsForLocation() {
+        configureCoordinateRegion()
+        
         let filteredListings = listings.filter {
             $0.city.lowercased() == searchLocation.lowercased() ||
             $0.state.lowercased() == searchLocation.lowercased()
         }
         
         self.listings = filteredListings.isEmpty ? listingsCopy : filteredListings
+    }
+    
+    private func configureCoordinateRegion() {
+        switch searchLocation {
+        case "Los Angeles", "LA":
+            self.coordinateRegion = .losAngeles
+        case "Miami":
+            self.coordinateRegion = .miami
+        default:
+            break
+        }
     }
 }

@@ -30,8 +30,8 @@ struct SearchAndFilterBar: View {
                 // action
             } label: {
                 Image(systemName: "line.3.horizontal.decrease.circle")
-                    .foregroundStyle(.black)
             }
+            .foregroundStyle(.black)
         }
         .padding(.horizontal)
         .padding(.vertical, 10)

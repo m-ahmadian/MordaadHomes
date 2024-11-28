@@ -93,11 +93,10 @@ struct ListingDetailView: View {
                 
                 Spacer()
                 
-                Image(listing.ownerImageUrl)
-                    .resizable()
-                    .frame(width: 64, height: 64)
-                    .scaledToFill()
-                    .clipShape(Circle())
+                CircularProfileImageView(
+                    imageURL: listing.ownerImageUrl,
+                    size: .large
+                )
             }
             .padding()
             

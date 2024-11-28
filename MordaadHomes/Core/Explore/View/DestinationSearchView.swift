@@ -14,12 +14,12 @@ enum DestinationSearchOptions {
 }
 
 struct DestinationSearchView: View {
-    @Binding var show: Bool
-    @ObservedObject  var viewModel: ExploreViewModel
+    @EnvironmentObject var viewModel: ExploreViewModel
     @State private var selectedOption: DestinationSearchOptions = .location
     @State private var starDate = Date()
     @State private var endDate = Date()
     @State private var numberOfGuests = 0
+    @Binding var show: Bool
     
     var body: some View {
         VStack {
@@ -40,7 +40,9 @@ struct DestinationSearchView: View {
                 if !viewModel.searchLocation.isEmpty {
                     Button("Clear") {
                         viewModel.searchLocation = ""
-                        viewModel.updateListingsForLocation()
+                        // TODO: Decide between the two
+//                        viewModel.updateListingsForLocation()
+                        Task { await viewModel.fetchListings() }
                     }
                     .foregroundStyle(.black)
                     .font(.subheadline)
@@ -114,11 +116,13 @@ struct DestinationSearchView: View {
             
             // MARK: - Number of guests view
             
+            // TODO: Check
             VStack(alignment: .leading) {
                 if selectedOption == .guests {
                     Text("Who's coming?")
                         .font(.title2)
                         .fontWeight(.semibold)
+                        .padding(.bottom)
                     
                     Stepper {
                         Text("\(numberOfGuests) Adults")
@@ -141,11 +145,12 @@ struct DestinationSearchView: View {
             
             Spacer()
         }
+        .background(Color(.systemGroupedBackground))
     }
 }
 
 #Preview {
-    DestinationSearchView(show: .constant(false), viewModel: ExploreViewModel(service: ExploreService()))
+    DestinationSearchView(show: .constant(false))
 }
 
 struct collapsedPickerView: View {

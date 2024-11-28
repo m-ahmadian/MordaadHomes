@@ -11,14 +11,28 @@ struct ListingImageCarouselView: View {
     let listing: Listing
     
     var body: some View {
-        TabView {
-            ForEach(listing.imageURLs, id: \.self) { image in
-                Image(image)
-                    .resizable()
-                    .scaledToFill()
+        ZStack(alignment: .topTrailing) {
+            TabView {
+                ForEach(listing.imageURLs, id: \.self) { image in
+                    Image(image)
+                        .resizable()
+                        .scaledToFill()
+                }
             }
+            .frame(height: 320)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .tabViewStyle(.page)
+            
+            Button {
+                // TODO: Implement
+            } label: {
+                Image(systemName: "heart")
+                    .imageScale(.large)
+            }
+            .foregroundStyle(.white)
+            .shadow(color: .black, radius: 10)
+            .padding()
         }
-        .tabViewStyle(.page)
     }
 }
 
