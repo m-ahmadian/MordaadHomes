@@ -15,14 +15,14 @@ enum DestinationSearchOptions {
 
 struct DestinationSearchView: View {
     @EnvironmentObject var viewModel: ExploreViewModel
-    @State private var selectedOption: DestinationSearchOptions = .location
+    @State private var selectedOption = DestinationSearchOptions.location
     @State private var starDate = Date()
     @State private var endDate = Date()
     @State private var numberOfGuests = 0
     @Binding var show: Bool
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Button {
                     withAnimation(.snappy) {

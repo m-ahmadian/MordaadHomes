@@ -25,14 +25,14 @@ struct ExploreView: View {
                             LazyVStack(spacing: 32) {
                                 SearchAndFilterBar(location: $viewModel.searchLocation)
                                     .onTapGesture {
-                                        withAnimation(.snappy) {
+                                        withAnimation(.spring) {
                                             showDestinationSearchView.toggle()
                                         }
                                     }
                                 
                                 ForEach(viewModel.listings) { listing in
                                     NavigationLink(value: listing) {
-                                        ListingItemView(listing: listing)
+                                        ListingView(listing: listing)
                                             .frame(height: 400)
                                             .clipShape(RoundedRectangle(cornerRadius: 10))
                                     }

@@ -37,15 +37,13 @@ class ContentViewModel: ObservableObject {
         }
         .store(in: &cancellables)
         
-        locationManager.$location.sink { [weak self] coordinate in
+        locationManager.$location.sink { [weak self] coordinates in
             guard let self else { return }
-            self.currentLocation = coordinate
+            self.currentLocation = coordinates
         }.store(in: &cancellables)
     }
     
     func fetchCurrentUser() {
-        Task {
-            self.currentUser = try await userService.fetchCurrentUser()
-        }
+        Task { self.currentUser = try await userService.fetchCurrentUser() }
     }
 }

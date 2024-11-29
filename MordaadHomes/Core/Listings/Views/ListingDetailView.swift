@@ -29,20 +29,7 @@ struct ListingDetailView: View {
                 ListingImageCarouselView(listing: listing)
                     .frame(height: 320)
                 
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundStyle(.black)
-                        .background {
-                            Circle()
-                                .fill(.white)
-                                .frame(width: 32, height: 32)
-                        }
-                        // TODO: Check this top padding on a device
-                        .padding(.top, 16)
-                        .padding(32)
-                }
+                MHBackButton { dismiss() }
             }
             
             VStack(alignment: .leading, spacing: 8) {
@@ -50,9 +37,11 @@ struct ListingDetailView: View {
                     .font(.title)
                     .fontWeight(.semibold)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 2) {
                         Image(systemName: "star.fill")
+                            .resizable()
+                            .frame(width: 12, height: 12)
                         
                         Text(listing.rating.formatRating())
                         
@@ -63,13 +52,13 @@ struct ListingDetailView: View {
                             .underline()
                             .fontWeight(.semibold)
                     }
-                    .foregroundStyle(.black)
+                    .font(.caption)
                     
                     Text("\(listing.city), \(listing.state)")
+                        .font(.caption)
                 }
-                .font(.caption)
             }
-            .padding(.leading)
+            .padding(.horizontal)
             .frame(maxWidth: .infinity, alignment: .leading)
             
             Divider()
@@ -79,6 +68,7 @@ struct ListingDetailView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Entire \(listing.type.description) hosted by \(listing.ownerName)")
                         .font(.headline)
+                        .fontWeight(.semibold)
                         .frame(width: 250, alignment: .leading)
                     
                     HStack(spacing: 2) {
@@ -127,68 +117,74 @@ struct ListingDetailView: View {
             
             Divider()
             
-            // bedrooms view
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Where you'll sleep")
-                    .font(.headline)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
-                        ForEach(1...listing.numberOfBedrooms, id: \.self) { bedroom in
-                            VStack {
-                                Image(systemName: "bed.double")
-                                
-                                Text("Bedroom \(bedroom)")
-                            }
-                            .frame(width: 132, height: 100)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(lineWidth: 1)
-                                    .foregroundStyle(.gray)
+            VStack {
+                // bedrooms view
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Where you'll sleep")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 16) {
+                            ForEach(1...listing.numberOfBedrooms, id: \.self) { bedroom in
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Image(systemName: "bed.double")
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("Bedroom \(bedroom)")
+                                            .font(.caption)
+                                            .fontWeight(.semibold)
+                                    }
+                                }
+                                .frame(width: 132, height: 100, alignment: .leading)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(lineWidth: 1)
+                                        .foregroundStyle(.gray)
+                                }
                             }
                         }
                     }
+                    .scrollTargetBehavior(.paging)
                 }
-                .scrollTargetBehavior(.paging)
-            }
-            .padding()
-            
-            Divider()
-            
-            // listing amenities
-            VStack(alignment: .leading, spacing: 16) {
-                Text("What this place offers")
-                    .font(.headline)
+                .padding()
                 
-                ForEach(listing.amenities) { amenity in
-                    HStack {
-                        Image(systemName: amenity.imageName)
-                            .frame(width: 32)
-                        
-                        Text(amenity.title)
-                            .font(.footnote)
-                        
-                        Spacer()
+                Divider()
+                
+                // listing amenities
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("What this place offers")
+                        .font(.headline)
+                    
+                    ForEach(listing.amenities) { amenity in
+                        HStack {
+                            Image(systemName: amenity.imageName)
+                                .frame(width: 32)
+                            
+                            Text(amenity.title)
+                                .font(.footnote)
+                            
+                            Spacer()
+                        }
                     }
                 }
+                .padding()
+                
+                Divider()
             }
-            .padding()
-            
-            Divider()
             
             VStack(alignment: .leading, spacing: 16) {
                 Text("Where you'll be")
                     .font(.headline)
+                    .fontWeight(.semibold)
                 
                 Map(position: $cameraPosition)
                     .frame(height: 200)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .cornerRadius(12)
             }
             .padding()
         }
-        .toolbarVisibility(.hidden, for: .tabBar)
-        .ignoresSafeArea()
-        .padding(.bottom, 64)
+        .padding(.bottom, 72)
         .overlay(alignment: .bottom) {
             VStack {
                 Divider()
@@ -212,26 +208,26 @@ struct ListingDetailView: View {
                     Spacer()
                     
                     Button {
-                        
+                        print("DEBUG: Reserve listing here..")
                     } label: {
                         Text("Reserve")
                             .foregroundStyle(.white)
                             .font(.subheadline)
-                            .fontWeight(.semibold)
+                            .fontWeight(.bold)
                             .frame(width: 140, height: 40)
                             .background(.pink)
                             .cornerRadius(8)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 }
-                .padding(.horizontal, 32)
+                .padding(.horizontal, 36)
             }
             .background(.white)
         }
-        .navigationBarHidden(true)
+        .toolbarVisibility(.hidden, for: .tabBar)
+        .ignoresSafeArea(edges: .top)
     }
 }
 
 #Preview {
-    ListingDetailView(listing: DeveloperPreview.shared.listings[3])
+    ListingDetailView(listing: DeveloperPreview.shared.listings[0])
 }

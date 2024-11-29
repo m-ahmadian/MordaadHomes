@@ -11,6 +11,6 @@ import SwiftUI
 struct DropShadow: ViewModifier {
     func body(content: Content) -> some View {
         return content
-            .shadow(color: .black.opacity(0.1), radius: 10)
+            .shadow(color: .black.opacity(0.4), radius: 2)
     }
 }

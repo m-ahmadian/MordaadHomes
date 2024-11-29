@@ -19,9 +19,9 @@ struct MHPrimaryButton: View {
                 .foregroundStyle(.white)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .frame(width: 360, height: 48)
+                .frame(width: UIScreen.main.bounds.width - 48, height: 48)
                 .background(.pink)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .cornerRadius(8)
         }
     }
 }

@@ -9,29 +9,17 @@ import SwiftUI
 
 struct ListingImageCarouselView: View {
     let listing: Listing
+    var showFavoritetButton: Bool = false
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            TabView {
-                ForEach(listing.imageURLs, id: \.self) { image in
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
+            ListingImageCarousel(imageURLs: listing.imageURLs)
+            
+            if showFavoritetButton {
+                MHFavoriteButton {
+                    // TODO: Implement the logic
                 }
             }
-            .frame(height: 320)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .tabViewStyle(.page)
-            
-            Button {
-                // TODO: Implement
-            } label: {
-                Image(systemName: "heart")
-                    .imageScale(.large)
-            }
-            .foregroundStyle(.white)
-            .shadow(color: .black, radius: 10)
-            .padding()
         }
     }
 }

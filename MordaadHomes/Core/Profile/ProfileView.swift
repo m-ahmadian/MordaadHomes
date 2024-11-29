@@ -18,27 +18,11 @@ struct ProfileView: View {
     var body: some View {
         VStack {
             // MARK: - Profile Login View
-            VStack(alignment: .leading, spacing: 32) {
-
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Profile")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                    Text("Log in to start planning your next trip")
-                }
-
-                MHPrimaryButton(title: "Log in") {
-                    print("Log in")
-                }
-
-                HStack {
-                    Text("Don't have an account?")
-
-                    Text("Sign up")
-                        .fontWeight(.semibold)
-                        .underline()
-                }
-                .font(.caption)
+            if !contentViewModel.isAuthenticated {
+                ProfileLoginView(service: service)
+            } else if let user = contentViewModel.currentUser {
+                UserProfileHeaderView(user: user)
+                    .padding()
             }
 
             // MARK: - Profile Options
@@ -50,6 +34,12 @@ struct ProfileView: View {
                     title: "Visit the help center")
             }
             .padding(.vertical)
+            
+            if contentViewModel.isAuthenticated {
+                Button("Log Out") {
+                    service.signout()
+                }
+            }
         }
         .padding()
     }

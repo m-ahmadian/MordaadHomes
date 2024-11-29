@@ -17,7 +17,12 @@ struct ContentView: View {
         self.authService = authService
         self.userService = userService
         
-        self._viewModel = StateObject(wrappedValue: ContentViewModel(authService: authService, userService: userService))
+        self._viewModel = StateObject(
+            wrappedValue: ContentViewModel(
+                authService: authService,
+                userService: userService
+            )
+        )
     }
     
     var body: some View {

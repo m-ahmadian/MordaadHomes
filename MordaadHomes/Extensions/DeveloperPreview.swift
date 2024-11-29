@@ -5,14 +5,19 @@
 //  Created by Mehrdad Behrouz Ahmadian on 2024-11-24.
 //
 
-import Foundation
+import SwiftUI
+
+extension PreviewProvider {
+    static var dev: DeveloperPreview {
+        return DeveloperPreview.shared
+    }
+}
 
 class DeveloperPreview {
     static let shared = DeveloperPreview()
     
     var listings: [Listing] = [
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "John Smith",
             ownerImageUrl: "male-profile-photo",
@@ -34,7 +39,6 @@ class DeveloperPreview {
             type: .villa
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "John Smith",
             ownerImageUrl: "male-profile-photo",
@@ -56,7 +60,6 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Steve Johnson",
             ownerImageUrl: "male-profile-photo",
@@ -78,7 +81,6 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Harry Styles",
             ownerImageUrl: "male-profile-photo",
@@ -100,7 +102,6 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Timothy Chalamet",
             ownerImageUrl: "male-profile-photo",
@@ -122,7 +123,6 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "John Smith",
             ownerImageUrl: "mpp1",
@@ -142,7 +142,6 @@ class DeveloperPreview {
             type: .villa
                 ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Emily Johnson",
             ownerImageUrl: "fpp1",
@@ -164,7 +163,6 @@ class DeveloperPreview {
             type: .townhouse
             ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Michael Brown",
             ownerImageUrl: "mpp2",
@@ -186,7 +184,6 @@ class DeveloperPreview {
             type: .apartment
                 ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Sarah Wilson",
             ownerImageUrl: "fpp2",
@@ -208,7 +205,6 @@ class DeveloperPreview {
             type: .house
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "David Thompson",
             ownerImageUrl: "mpp3",
@@ -230,7 +226,6 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Jessica Taylor",
             ownerImageUrl: "fpp4",
@@ -252,7 +247,6 @@ class DeveloperPreview {
             type: .house
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Robert Anderson",
             ownerImageUrl: "mpp5",
@@ -274,7 +268,6 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Amanda Garcia",
             ownerImageUrl: "fpp5",
@@ -296,7 +289,6 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Christopher Davis",
             ownerImageUrl: "mpp6",
@@ -318,7 +310,6 @@ class DeveloperPreview {
             type: .villa
         ),
         .init(
-            id: NSUUID().uuidString,
             ownerUid: NSUUID().uuidString,
             ownerName: "Olivia Martinez",
             ownerImageUrl: "fpp6",

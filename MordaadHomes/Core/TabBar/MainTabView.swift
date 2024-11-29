@@ -15,18 +15,6 @@ struct MainTabView: View {
         self.service = service
     }
     
-    //    var body: some View {
-    //        TabView {
-    //            ExploreView()
-    //                .tabItem { Label("Explore", systemImage: "magnifyingglass") }
-    //
-    //            WishlistsView()
-    //                .tabItem { Label("Wishlists", systemImage: "heart") }
-    //
-    //            ProfileView(service: service, user: contentViewModel.currentUser)
-    //                .tabItem { Label("Profile", systemImage: "person.circle") }
-    //        }
-    
     var body: some View {
         TabView {
             ExploreView()

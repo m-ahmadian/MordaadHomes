@@ -13,7 +13,8 @@ class ExploreViewModel: ObservableObject {
     @Published var coordinateRegion: CLLocationCoordinate2D = .losAngeles
     @Published var searchLocation = ""
     private let service: ExploreService
-    private var listingsCopy = [Listing]()
+    // TODO: Decide if you want to keep the copy
+//    private var listingsCopy = [Listing]()
     
     init(service: ExploreService) {
         self.service = service
@@ -27,7 +28,7 @@ class ExploreViewModel: ObservableObject {
     func fetchListings() async {
         do {
             self.listings = try await service.fetchListings()
-            self.listingsCopy = listings
+//            self.listingsCopy = listings
         } catch {
             // TODO: Implement the error enum and description
             print("DEBUG: Failed to fetch listings with error: \(error.localizedDescription)")
@@ -42,7 +43,7 @@ class ExploreViewModel: ObservableObject {
             $0.state.lowercased() == searchLocation.lowercased()
         }
         
-        self.listings = filteredListings.isEmpty ? listingsCopy : filteredListings
+        self.listings = filteredListings.isEmpty ? /*listingsCopy*/ listings : filteredListings
     }
     
     private func configureCoordinateRegion() {

@@ -11,7 +11,7 @@ struct SearchAndFilterBar: View {
     @Binding var location: String
     
     var body: some View {
-        HStack {
+        HStack(spacing: 12) {
             Image(systemName: "magnifyingglass")
             
             VStack(alignment: .leading, spacing: 2) {
