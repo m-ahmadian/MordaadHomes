@@ -18,6 +18,7 @@ class DeveloperPreview {
     
     var listings: [Listing] = [
         .init(
+            category: .customBuild,
             ownerUid: NSUUID().uuidString,
             ownerName: "John Smith",
             ownerImageUrl: "male-profile-photo",
@@ -39,6 +40,7 @@ class DeveloperPreview {
             type: .villa
         ),
         .init(
+            category: .renovation,
             ownerUid: NSUUID().uuidString,
             ownerName: "John Smith",
             ownerImageUrl: "male-profile-photo",
@@ -60,6 +62,7 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
+            category: .plumbing,
             ownerUid: NSUUID().uuidString,
             ownerName: "Steve Johnson",
             ownerImageUrl: "male-profile-photo",
@@ -81,6 +84,7 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
+            category: .hvac,
             ownerUid: NSUUID().uuidString,
             ownerName: "Harry Styles",
             ownerImageUrl: "male-profile-photo",
@@ -102,6 +106,7 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
+            category: .generalContractor,
             ownerUid: NSUUID().uuidString,
             ownerName: "Timothy Chalamet",
             ownerImageUrl: "male-profile-photo",
@@ -123,6 +128,7 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
+            category: .airDuctCleaning,
             ownerUid: NSUUID().uuidString,
             ownerName: "John Smith",
             ownerImageUrl: "mpp1",
@@ -142,6 +148,7 @@ class DeveloperPreview {
             type: .villa
                 ),
         .init(
+            category: .plumbing,
             ownerUid: NSUUID().uuidString,
             ownerName: "Emily Johnson",
             ownerImageUrl: "fpp1",
@@ -163,6 +170,7 @@ class DeveloperPreview {
             type: .townhouse
             ),
         .init(
+            category: .renovation,
             ownerUid: NSUUID().uuidString,
             ownerName: "Michael Brown",
             ownerImageUrl: "mpp2",
@@ -184,6 +192,7 @@ class DeveloperPreview {
             type: .apartment
                 ),
         .init(
+            category: .customBuild,
             ownerUid: NSUUID().uuidString,
             ownerName: "Sarah Wilson",
             ownerImageUrl: "fpp2",
@@ -205,6 +214,7 @@ class DeveloperPreview {
             type: .house
         ),
         .init(
+            category: .airDuctCleaning,
             ownerUid: NSUUID().uuidString,
             ownerName: "David Thompson",
             ownerImageUrl: "mpp3",
@@ -226,6 +236,7 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
+            category: .hvac,
             ownerUid: NSUUID().uuidString,
             ownerName: "Jessica Taylor",
             ownerImageUrl: "fpp4",
@@ -247,6 +258,7 @@ class DeveloperPreview {
             type: .house
         ),
         .init(
+            category: .plumbing,
             ownerUid: NSUUID().uuidString,
             ownerName: "Robert Anderson",
             ownerImageUrl: "mpp5",
@@ -268,6 +280,7 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
+            category: .airDuctCleaning,
             ownerUid: NSUUID().uuidString,
             ownerName: "Amanda Garcia",
             ownerImageUrl: "fpp5",
@@ -289,6 +302,7 @@ class DeveloperPreview {
             type: .apartment
         ),
         .init(
+            category: .hvac,
             ownerUid: NSUUID().uuidString,
             ownerName: "Christopher Davis",
             ownerImageUrl: "mpp6",
@@ -310,6 +324,7 @@ class DeveloperPreview {
             type: .villa
         ),
         .init(
+            category: .generalContractor,
             ownerUid: NSUUID().uuidString,
             ownerName: "Olivia Martinez",
             ownerImageUrl: "fpp6",

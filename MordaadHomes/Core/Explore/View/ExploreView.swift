@@ -12,6 +12,7 @@ struct ExploreView: View {
     @State private var showListingDetail = false
     @State private var showMapView = false
     @StateObject var viewModel = ExploreViewModel(service: ExploreService())
+    @State private var selectedCategory: ProjectCategory? = nil
     
     var body: some View {
         NavigationStack {
@@ -30,7 +31,14 @@ struct ExploreView: View {
                                         }
                                     }
                                 
-                                ForEach(viewModel.listings) { listing in
+                                CategoryRow(
+                                    selectedCategory: Binding(
+                                        get: { viewModel.selectedCategory },
+                                        set: { viewModel.selectCategory($0) }
+                                    )
+                                )
+                                
+                                ForEach(viewModel.filteredListings()) { listing in
                                     NavigationLink(value: listing) {
                                         ListingView(listing: listing)
                                             .frame(height: 400)
@@ -60,7 +68,7 @@ struct ExploreView: View {
             }
             .sheet(isPresented: $showMapView) {
                 ListingMapView(
-                    listings: viewModel.listings,
+                    listings: viewModel.filteredListings(),
                     coordinateRegion: viewModel.coordinateRegion
                 )
             }
