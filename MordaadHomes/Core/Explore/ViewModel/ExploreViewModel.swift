@@ -14,6 +14,7 @@ class ExploreViewModel: ObservableObject {
     @Published var searchLocation = ""
     @Published var selectedCategory: ProjectCategory?
     @Published var isCategorySelected = false
+    @Published var favoritesListings = Set<Listing>()
     private let service: ExploreService
     // TODO: Decide if you want to keep the copy
     //    private var listingsCopy = [Listing]()
@@ -78,5 +79,19 @@ class ExploreViewModel: ObservableObject {
         default:
             break
         }
+    }
+    
+    // MARK: - Favourite Helper Methods
+    
+    func toggleFavourite(for listing: Listing) {
+        if favoritesListings.contains(listing) {
+            favoritesListings.remove(listing)
+        } else {
+            favoritesListings.insert(listing)
+        }
+    }
+    
+    func isFavourite(for listing: Listing) -> Bool {
+        favoritesListings.contains(listing)
     }
 }

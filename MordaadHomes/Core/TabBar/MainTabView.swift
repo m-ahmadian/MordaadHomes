@@ -10,6 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     private let service: AuthService
     @EnvironmentObject var contentViewModel: ContentViewModel
+    @StateObject private var exploreViewModel = ExploreViewModel(service: ExploreService())
     
     init(service: AuthService) {
         self.service = service
@@ -21,11 +22,12 @@ struct MainTabView: View {
                 .tabItem { Label("Explore", systemImage: "magnifyingglass") }
             
             WishlistView()
-                .tabItem { Label("Wishlists", systemImage: "heart") }
+                .tabItem { Label("Favorites", systemImage: "heart") }
             
             ProfileView(service: service, user: contentViewModel.currentUser)
                 .tabItem { Label("Profile", systemImage: "person") }
         }
+        .environmentObject(exploreViewModel)
         .onAppear {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()

@@ -59,4 +59,5 @@ struct ListingView: View {
 
 #Preview {
     ListingView(listing: DeveloperPreview.shared.listings[2])
+        .environmentObject(ExploreViewModel(service: ExploreService()))
 }

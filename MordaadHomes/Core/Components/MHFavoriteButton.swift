@@ -9,20 +9,21 @@ import SwiftUI
 
 struct MHFavoriteButton: View {
     let action: () -> Void
+    let isFavourite: Bool
     
     var body: some View {
         Button {
             action()
         } label: {
-            Image(systemName: "heart")
+            Image(systemName: isFavourite ? "heart.fill" : "heart")
                 .imageScale(.large)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(isFavourite ? .red : .white)
         .shadow(color: .black, radius: 10)
         .padding()
     }
 }
 
 #Preview {
-    MHFavoriteButton(action: {})
+    MHFavoriteButton(action: {}, isFavourite: false)
 }

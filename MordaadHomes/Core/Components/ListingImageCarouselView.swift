@@ -10,15 +10,16 @@ import SwiftUI
 struct ListingImageCarouselView: View {
     let listing: Listing
     var showFavoritetButton: Bool = false
+    @EnvironmentObject var viewModel: ExploreViewModel
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
             ListingImageCarousel(imageURLs: listing.imageURLs)
             
             if showFavoritetButton {
-                MHFavoriteButton {
-                    // TODO: Implement the logic
-                }
+                MHFavoriteButton(action: {
+                    viewModel.toggleFavourite(for: listing)
+                }, isFavourite: viewModel.isFavourite(for: listing))
             }
         }
     }
@@ -26,4 +27,5 @@ struct ListingImageCarouselView: View {
 
 #Preview {
     ListingImageCarouselView(listing: DeveloperPreview.shared.listings[0])
+        .environmentObject(ExploreViewModel(service: ExploreService()))
 }

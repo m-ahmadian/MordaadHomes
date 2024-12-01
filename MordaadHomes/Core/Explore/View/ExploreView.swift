@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @StateObject var viewModel = ExploreViewModel(service: ExploreService())
     @State private var showDestinationSearchView = false
     @State private var showListingDetail = false
     @State private var showMapView = false
-    @StateObject var viewModel = ExploreViewModel(service: ExploreService())
     @State private var selectedCategory: ProjectCategory? = nil
     
     var body: some View {

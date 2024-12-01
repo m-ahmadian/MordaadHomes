@@ -19,7 +19,7 @@ struct SearchAndFilterBar: View {
                     .font(.footnote)
                     .fontWeight(.semibold)
                 
-                Text("\(location.isEmpty ? "Anywhere -" : "") - Any status - Add filters")
+                Text("\(location.isEmpty ? "Anywhere" : "") - Any status - Add filters")
                     .font(.caption2)
                     .foregroundStyle(.gray)
             }
