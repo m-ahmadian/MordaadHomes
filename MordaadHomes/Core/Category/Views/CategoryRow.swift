@@ -10,19 +10,19 @@ import SwiftUI
 struct CategoryRow: View {
     @Binding var selectedCategory: ProjectCategory?
         
-        var body: some View {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    ForEach(ProjectCategory.allCases) { category in
-                        CategoryItem(category: category, isSelected: selectedCategory == category)
-                            .onTapGesture {
-                                selectedCategory = category
-                            }
-                    }
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 16) {
+                ForEach(ProjectCategory.allCases) { category in
+                    CategoryItem(category: category, isSelected: selectedCategory == category)
+                        .onTapGesture {
+                            selectedCategory = category
+                        }
                 }
-                .padding()
             }
+            .padding()
         }
+    }
 }
 
 #Preview {

@@ -20,7 +20,8 @@ struct ListingView: View {
                 // details
                 VStack(alignment: .leading) {
                     Text("\(listing.city), \(listing.state)")
-                        .fontWeight(.semibold)
+                        .font(.subheadline)
+                        .fontWeight(.medium)
                     
                     VStack(spacing: 0) {
                         Text("12 mi away")
@@ -29,13 +30,15 @@ struct ListingView: View {
                         Text("Nov 3 - 10")
                             .foregroundStyle(.gray)
                     }
+                    .font(.footnote)
                     
                     HStack(spacing: 4) {
                         Text("$\(listing.pricePerNight)")
-                            .fontWeight(.semibold)
                         
                         Text("night")
                     }
+                    .font(.subheadline)
+                    .fontWeight(.regular)
                 }
                 
                 Spacer()

@@ -12,10 +12,10 @@ struct CategoryItem: View {
     let isSelected: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 4) {
             Image(systemName: category.systemImageName)
                 .font(.system(size: 30))
-                .foregroundStyle(isSelected ? .white : .gray)
+                .foregroundStyle(isSelected ? .white : .black.opacity(0.8))
                 .frame(width: 60, height: 60)
                 .background(isSelected ? Color.blue : Color.gray.opacity(0.2))
                 .clipShape(Circle())

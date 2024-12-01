@@ -23,7 +23,7 @@ struct ExploreView: View {
                 } else {
                     ZStack(alignment: .bottom) {
                         ScrollView {
-                            LazyVStack(spacing: 32) {
+                            LazyVStack(spacing: .zero) {
                                 SearchAndFilterBar(location: $viewModel.searchLocation)
                                     .onTapGesture {
                                         withAnimation(.spring) {
@@ -44,6 +44,7 @@ struct ExploreView: View {
                                             .frame(height: 400)
                                             .clipShape(RoundedRectangle(cornerRadius: 10))
                                     }
+                                    .padding(.bottom, 16)
                                 }
                             }
                         }

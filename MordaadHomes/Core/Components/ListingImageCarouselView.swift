@@ -16,10 +16,16 @@ struct ListingImageCarouselView: View {
         ZStack(alignment: .topTrailing) {
             ListingImageCarousel(imageURLs: listing.imageURLs)
             
-            if showFavoritetButton {
-                MHFavoriteButton(action: {
-                    viewModel.toggleFavourite(for: listing)
-                }, isFavourite: viewModel.isFavourite(for: listing))
+            HStack {
+                CapsuleTextView(text: listing.type.description)
+                
+                Spacer()
+                
+                if showFavoritetButton {
+                    MHFavoriteButton(action: {
+                        viewModel.toggleFavourite(for: listing)
+                    }, isFavourite: viewModel.isFavourite(for: listing))
+                }
             }
         }
     }
