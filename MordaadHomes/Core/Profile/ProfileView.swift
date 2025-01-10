@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    private let service: AuthService
     @EnvironmentObject var contentViewModel: ContentViewModel
-    
-    init(service: AuthService, user: User?) {
-        self.service = service
-    }
     
     var body: some View {
         VStack {
             // MARK: - Profile Login View
             if !contentViewModel.isAuthenticated {
-                ProfileLoginView(service: service)
+                ProfileLoginView()
             } else if let user = contentViewModel.currentUser {
                 UserProfileHeaderView(user: user)
                     .padding()
@@ -37,7 +32,7 @@ struct ProfileView: View {
             
             if contentViewModel.isAuthenticated {
                 Button("Log Out") {
-                    service.signout()
+                    contentViewModel.logout()
                 }
             }
         }
@@ -46,5 +41,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(service: AuthService(), user: DeveloperPreview.shared.user)
+    ProfileView()
 }

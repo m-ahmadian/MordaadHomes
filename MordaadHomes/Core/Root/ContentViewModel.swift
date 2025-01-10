@@ -12,14 +12,16 @@ import CoreLocation
 @MainActor
 class ContentViewModel: ObservableObject {
     @Published var isAuthenticated = false
+    @Published var isAuthenticating = false
     @Published var currentUser: User?
     @Published var currentLocation: CLLocationCoordinate2D?
+    @Published var showAlert = false
+    @Published var authError: AuthError?
     
     private var cancellables = Set<AnyCancellable>()
+    private var locationManager = LocationManager()
     private var authService: AuthService
     private var userService: UserService
-    
-    private var locationManager = LocationManager()
     
     init(authService: AuthService, userService: UserService) {
         self.authService = authService
@@ -32,8 +34,11 @@ class ContentViewModel: ObservableObject {
         authService.$didAuthenticateUser.sink { [weak self] authenticated in
             guard let self else { return }
             self.isAuthenticated = authenticated
-            guard authenticated else { return }
-            self.fetchCurrentUser()
+            if authenticated {
+                self.fetchCurrentUser()
+            } else {
+                self.currentUser = nil
+            }
         }
         .store(in: &cancellables)
         
@@ -45,5 +50,22 @@ class ContentViewModel: ObservableObject {
     
     func fetchCurrentUser() {
         Task { self.currentUser = try await userService.fetchCurrentUser() }
+    }
+    
+    func login(email: String, password: String) async {
+        isAuthenticating = true
+        
+        do {
+            try await authService.login(withEmail: email, password: password)
+            isAuthenticating = false
+        } catch {
+            self.showAlert = true
+            isAuthenticating = false
+            self.authError = .invalidEmail
+        }
+    }
+    
+    func logout() {
+        authService.logout()
     }
 }

@@ -16,7 +16,7 @@ class AuthService {
     }
     
     @MainActor
-    func signout() {
+    func logout() {
         didAuthenticateUser = false
     }
 }

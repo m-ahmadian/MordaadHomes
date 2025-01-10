@@ -9,11 +9,7 @@ import SwiftUI
 
 struct ProfileLoginView: View {
     @State private var showLoginSheet = false
-    private let service: AuthService
-    
-    init(service: AuthService) {
-        self.service = service
-    }
+    @EnvironmentObject var contentViewModel: ContentViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
@@ -40,11 +36,12 @@ struct ProfileLoginView: View {
             .font(.caption)
         }
         .sheet(isPresented: $showLoginSheet) {
-            LoginView(service: service)
+            LoginView()
         }
     }
 }
 
 #Preview {
-    ProfileLoginView(service: AuthService())
+    ProfileLoginView()
+        .environmentObject(ContentViewModel(authService: AuthService(), userService: UserService()))
 }

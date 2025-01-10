@@ -9,13 +9,14 @@ import SwiftUI
 
 struct WishlistView: View {
     @EnvironmentObject var exploreViewModel: ExploreViewModel
-    @State private var isUserLoggedIn = false
+    @EnvironmentObject var contentViewModel: ContentViewModel
     @State private var selectedListing: Listing?
+    @State private var showLoginView = false
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                /*if !isUserLoggedIn {
+                if !contentViewModel.isAuthenticated {
                     // Login prompt when user is not logged in
                     VStack(alignment: .leading, spacing: 32) {
                        
@@ -30,11 +31,11 @@ struct WishlistView: View {
                         .padding(.vertical)
                         
                         MHPrimaryButton(title: "Log in") {
-                            print("Log in")
+                            showLoginView.toggle()
                         }
                     }
                     .padding(.top)
-                } else */ if exploreViewModel.favoritesListings.isEmpty {
+                } else if exploreViewModel.favoritesListings.isEmpty {
                     // Display message when no favorites
                     VStack(alignment: .center, spacing: 16) {
                         Text("No favorites yet")
@@ -66,6 +67,9 @@ struct WishlistView: View {
                 ListingDetailView(listing: listing)
                     .toolbarVisibility(.hidden, for: .navigationBar)
             }
+            .sheet(isPresented: $showLoginView) {
+                LoginView()
+            }
         }
     }
 }
@@ -73,4 +77,5 @@ struct WishlistView: View {
 #Preview {
     WishlistView()
         .environmentObject(ExploreViewModel(service: ExploreService()))
+        .environmentObject(ContentViewModel(authService: AuthService(), userService: UserService()))
 }

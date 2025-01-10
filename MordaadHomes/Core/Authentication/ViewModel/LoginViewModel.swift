@@ -15,17 +15,17 @@ class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     
-    private let service: AuthService
+    private let contentViewModel: ContentViewModel
     
-    init(service: AuthService) {
-        self.service = service
+    init(contentViewModel: ContentViewModel) {
+        self.contentViewModel = contentViewModel
     }
     
     func login() async {
         isAuthenticating = true
         
         do {
-            try await service.login(withEmail: email, password: password)
+            try await contentViewModel.login(email: email, password: password)
             isAuthenticating = false
         } catch {
             self.showAlert = true

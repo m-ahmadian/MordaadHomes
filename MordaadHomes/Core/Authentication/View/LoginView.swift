@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
-    private let service: AuthService
-    @StateObject private var viewModel: LoginViewModel
+    @EnvironmentObject var contentViewModel: ContentViewModel
     @Environment(\.dismiss) var dismiss
-    
-    init(service: AuthService) {
-        self.service = service
-        self._viewModel = StateObject(wrappedValue: LoginViewModel(service: service))
-    }
+    @State private var email = ""
+    @State private var password = ""
     
     var body: some View {
         NavigationStack {
@@ -31,11 +27,11 @@ struct LoginView: View {
                 
                 // text fields
                 VStack {
-                    TextField("Enter your email", text: $viewModel.email)
+                    TextField("Enter your email", text: $email)
                         .textInputAutocapitalization(.none)
                         .standardTextFieldModifier()
                     
-                    SecureField("Enter your password", text: $viewModel.password)
+                    SecureField("Enter your password", text: $password)
                         .standardTextFieldModifier()
                 }
                 
@@ -52,21 +48,20 @@ struct LoginView: View {
                 
                 Button {
                     Task {
-                        await viewModel.login()
-                        dismiss()
+                        await login()
                     }
                 } label: {
-                    Text(viewModel.isAuthenticating ? "" : "Login")
+                    Text(contentViewModel.isAuthenticating ? "" : "Login")
                         .foregroundColor(.white)
                         .standardButtonModifier()
                         .overlay {
-                            if viewModel.isAuthenticating {
+                            if contentViewModel.isAuthenticating {
                                 ProgressView()
                                     .tint(.white)
                             }
                         }
                 }
-                .disabled(viewModel.isAuthenticating || !formIsValid)
+                .disabled(contentViewModel.isAuthenticating || !formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.7)
                 .padding(.vertical)
 
@@ -89,21 +84,31 @@ struct LoginView: View {
                 .padding(.vertical, 16)
                 
             }
-            .alert(isPresented: $viewModel.showAlert) {
+            .alert(isPresented: $contentViewModel.showAlert) {
                 Alert(title: Text("Error"), message: Text("Please try again.."))
             }
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    private func login() async {
+        await contentViewModel.login(email: email, password: password)
+        if contentViewModel.isAuthenticating {
+            dismiss()
         }
     }
 }
 
 extension LoginView: AuthenticationFormProtocol {
     var formIsValid: Bool {
-        return !viewModel.email.isEmpty
-        && viewModel.email.contains("@")
-        && !viewModel.password.isEmpty
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
     }
 }
 
 #Preview {
-    LoginView(service: AuthService())
+    LoginView()
+        .environmentObject(ContentViewModel(authService: AuthService(), userService: UserService()))
 }
