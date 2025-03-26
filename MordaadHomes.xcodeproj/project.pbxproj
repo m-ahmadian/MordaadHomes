@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8B98E582D93C8C500783D6F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E8B98E572D93C8C500783D6F /* Kingfisher */; };
 		E8BADCEB2CF58C2A00657722 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = E8BADCEA2CF58C2A00657722 /* SwiftFormat */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B98E582D93C8C500783D6F /* Kingfisher in Frameworks */,
 				E8BADCEB2CF58C2A00657722 /* SwiftFormat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = MordaadHomes;
 			packageProductDependencies = (
 				E8BADCEA2CF58C2A00657722 /* SwiftFormat */,
+				E8B98E572D93C8C500783D6F /* Kingfisher */,
 			);
 			productName = MordaadHomes;
 			productReference = E84121312CEEE43000FC2B24 /* MordaadHomes.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E8BADCE92CF58C2A00657722 /* XCRemoteSwiftPackageReference "swift-format" */,
+				E8B98E562D93C8C500783D6F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E84121322CEEE43000FC2B24 /* Products */;
@@ -339,6 +343,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E8B98E562D93C8C500783D6F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.1;
+			};
+		};
 		E8BADCE92CF58C2A00657722 /* XCRemoteSwiftPackageReference "swift-format" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swiftlang/swift-format";
@@ -350,6 +362,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E8B98E572D93C8C500783D6F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8B98E562D93C8C500783D6F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		E8BADCEA2CF58C2A00657722 /* SwiftFormat */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8BADCE92CF58C2A00657722 /* XCRemoteSwiftPackageReference "swift-format" */;
